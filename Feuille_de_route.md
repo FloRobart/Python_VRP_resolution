@@ -17,7 +17,7 @@
 
 ## Rendu de différents livrables
 
-- Vendredi 16 février (normalement parce qu'il n'y a aucune date de rendu dans le sujet)
+- Vendredi 16 février
   - [Résolution du problème avec CPlex](#résolution-du-problème-avec-cplex)
   - [L'interface graphique Python](#linterface-graphique-python)
 
