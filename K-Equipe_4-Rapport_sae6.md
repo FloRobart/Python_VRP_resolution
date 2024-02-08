@@ -29,4 +29,9 @@ En résumé, l'utilisation d'une architecture MVC a contribué à la création d
 
 ### Librairie utilisée
 
-### Implémentation de l'API de CPlex
+## Implémentation de l'API de CPlex
+
+### Problème rencontré
+
+- **Problème de compatibilité:** Si nous voulons lire un fichier avec l'API CPlex en Python, nous sommes limité à une fourchette d'extensions de fichier. Qui sont le MPS, le LP et le SAV. Hors, le fichier de données que nous devons lire est un fichier .dat, qui n'est pas compatible avec l'API CPlex.
+- 
