@@ -49,3 +49,50 @@ subject to {
   	  u[i] <= Q;
   	}
 }
+
+execute {
+  // Pour chaque véhicule
+  for (var v = 1; v <= V; v++) {
+    writeln("Chemin du véhicule ", v, ": ");
+    
+    // Trouver le chemin parcouru par le véhicule v
+    var i = 1; // Départ du dépôt
+    var j = 0;
+    
+    var sommeDemande = 0;
+    write("Dépôt ", i);
+    // Tant que le véhicule n'est pas retourné au dépôt
+    while (j != 1) {
+      // Trouver le prochain nœud j dans le chemin du véhicule v
+      for (var k = 1; k <= nombreNode; k++) {
+        
+        if(i == 0){
+          j = 1;
+          break;
+        }
+        
+        if (x[i][k][v] == 1) {
+          j = k;
+          //affichage des noeuds
+          if(j == 1) {
+            write("-> Dépôt ", j);
+          }
+          else {
+            write(" -> Client ", j, " Distance ", i, " vers ", j, " : ", dist[i][j]);
+            sommeDemande += demande[j];   
+          }
+           
+              break;
+        }
+      }
+      
+      // Mettre à jour le nœud de départ pour la prochaine itération
+      i = j;
+    }
+    
+    //Mettre la capacité restante
+    writeln();
+    writeln("Capacité restantes : ", Q - sommeDemande);
+    writeln("----------------------------------------");
+  }
+}
