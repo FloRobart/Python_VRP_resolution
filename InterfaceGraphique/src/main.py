@@ -1,13 +1,13 @@
 import view.view as view
-import model.model as model
+import model.metier as metier
 
 class Controller:
     def __init__(self):
-        self.model = model.Model(self)
+        self.metier = metier.Metier(self)
         self.view = view.View(self)
 
     def executeCPLEX(self, lien):
-        self.model.executeCPLEX(lien)
+        self.metier.executeCPLEX(lien)
 
 
 if __name__ == "__main__":

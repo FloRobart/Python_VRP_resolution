@@ -10,7 +10,7 @@ class View:
         self.ctrl = ctrl
         #self.selected_file_path = None
         self.selected_file_path = os.path.expanduser('~') + ("/TP/s6/s6.01_developpement_avance/SAE/InterfaceGraphique"
-                                                             "/src/ressource/voyageurdeCommerce.dat")
+                                                             "/src/ressource/sac_a_dos.dat")
 
         dpg.create_context()
         dpg.create_viewport(title='Interface CPLEX', width=1200, height=600)
@@ -28,7 +28,7 @@ class View:
         with dpg.window(label="Choix de Fichier", width=600, height=600, no_close=True):
             dpg.add_text("Choisir un fichier de jeu de données")
             dpg.add_button(label="Choisir un Fichier", callback=lambda: dpg.show_item("file_dialog_id"))
-            dpg.add_input_text(default_value="voyageurdeCommerce.dat", readonly=True,
+            dpg.add_input_text(default_value="sac_a_dos.dat", readonly=True,
                                source=self.selected_file_path, id="input_text_id")
             dpg.add_button(label="Executer le programme", callback=self.executeCPLEX)
 
