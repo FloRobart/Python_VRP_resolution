@@ -1,18 +1,47 @@
 import sys
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QTextEdit
 
-# Subclass QMainWindow to customize your application's main window
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.label = QLabel("Click in this window")
+        self.setCentralWidget(self.label)
 
-        self.setWindowTitle("My App")
-        button = QPushButton("Press Me!")
-        self.setFixedSize(QSize(400, 300))
+    def mousePressEvent(self, e):
+        if e.button() == Qt.LeftButton:
+            # handle the left-button press in here
+            self.label.setText("mousePressEvent LEFT")
 
-        # Set the central widget of the Window.
-        self.setCentralWidget(button)
+        elif e.button() == Qt.MiddleButton:
+            # handle the middle-button press in here.
+            self.label.setText("mousePressEvent MIDDLE")
+
+        elif e.button() == Qt.RightButton:
+            # handle the right-button press in here.
+            self.label.setText("mousePressEvent RIGHT")
+
+    def mouseReleaseEvent(self, e):
+        if e.button() == Qt.LeftButton:
+            self.label.setText("mouseReleaseEvent LEFT")
+
+        elif e.button() == Qt.MiddleButton:
+            self.label.setText("mouseReleaseEvent MIDDLE")
+
+        elif e.button() == Qt.RightButton:
+            self.label.setText("mouseReleaseEvent RIGHT")
+
+    def mouseDoubleClickEvent(self, e):
+        if e.button() == Qt.LeftButton:
+            self.label.setText("mouseDoubleClickEvent LEFT")
+
+        elif e.button() == Qt.MiddleButton:
+            self.label.setText("mouseDoubleClickEvent MIDDLE")
+
+        elif e.button() == Qt.RightButton:
+            self.label.setText("mouseDoubleClickEvent RIGHT")
+
 
 # Création de l'application
 app = QApplication(sys.argv)
