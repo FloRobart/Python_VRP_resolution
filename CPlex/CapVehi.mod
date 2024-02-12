@@ -35,7 +35,7 @@ subject to {
   	  sum(v in 1..V, i in 1.. nombreNode) x[i][j][v] == 1;
   	 }
   	//Capacité ne doit pas être dépassé
-  	forall (v in 2..V) 
+  	forall (v in 1..V) 
   	{
   	  	sum(i in 1..nombreNode, j in 2..nombreNode) demande[j]*x[i][j][v] <= Q;  
   	}
