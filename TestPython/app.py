@@ -11,7 +11,7 @@ class FileSelectorApp(QMainWindow):
         self.setGeometry(100, 100, 600, 400)
 
         # Create widgets
-        self.label = QLabel('Fichier sélectionné : None')
+        self.label = QLabel('Aucun fichier sélectionné.')
         self.text_edit = QTextEdit()
         self.select_button = QPushButton('Sélectionner un fichier texte contenant les coordonnées des points')
         self.save_button = QPushButton('Sauvegarder le fichier')
