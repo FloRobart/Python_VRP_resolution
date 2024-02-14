@@ -58,7 +58,7 @@ execute {
     // Trouver le chemin parcouru par le véhicule v
     var i = 1; // Départ du dépôt
     var j = 0;
-    
+    var sommeCout = 0;
     var sommeDemande = 0;
     write("Dépôt ", i);
     // Tant que le véhicule n'est pas retourné au dépôt
@@ -76,9 +76,11 @@ execute {
           //affichage des noeuds
           if(j == 1) {
             write("-> Dépôt ", j);
+            sommeCout += dist[i][j];
           }
           else {
             write(" -> Client ", j, " Distance ", i, " vers ", j, " : ", dist[i][j]);
+            sommeCout += dist[i][j];
             sommeDemande += demande[j];   
           }
            
@@ -93,6 +95,7 @@ execute {
     //Mettre la capacité restante
     writeln();
     writeln("Capacité restantes : ", Q - sommeDemande);
+    writeln("Cout de tournées   : ",sommeCout);
     writeln("----------------------------------------");
   }
 }
