@@ -1,52 +1,87 @@
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QTextEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QFileDialog, QLabel, QTextEdit, QWidget, QShortcut
+from PyQt5.QtGui import QKeySequence
 
 
-class MainWindow(QMainWindow):
+class FileSelectorApp(QMainWindow):
     def __init__(self):
-        super().__init__()
-        self.label = QLabel("Click in this window")
-        self.setCentralWidget(self.label)
+        super(FileSelectorApp, self).__init__()
 
-    def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton:
-            # handle the left-button press in here
-            self.label.setText("mousePressEvent LEFT")
+        self.setWindowTitle('Interface graphique pour le solveur CPlex')
+        self.setGeometry(100, 100, 600, 400)
 
-        elif e.button() == Qt.MiddleButton:
-            # handle the middle-button press in here.
-            self.label.setText("mousePressEvent MIDDLE")
+        # Create widgets
+        self.label = QLabel('Fichier sélectionné : None')
+        self.text_edit = QTextEdit()
+        self.select_button = QPushButton('Sélectionner un fichier texte contenant les coordonnées des points')
+        self.save_button = QPushButton('Sauvegarder le fichier')
+        self.solve_button = QPushButton('Résoudre le problème avec CPlex')
 
-        elif e.button() == Qt.RightButton:
-            # handle the right-button press in here.
-            self.label.setText("mousePressEvent RIGHT")
+        # Create shortcuts
+        save_shortcut = QShortcut(QKeySequence('Ctrl+S'), self)
+        save_shortcut.activated.connect(self.save_file)
 
-    def mouseReleaseEvent(self, e):
-        if e.button() == Qt.LeftButton:
-            self.label.setText("mouseReleaseEvent LEFT")
+        self.select_button.clicked.connect(self.show_file_dialog)
+        self.save_button.clicked.connect(self.save_file)
+        self.solve_button.clicked.connect(self.solve)
 
-        elif e.button() == Qt.MiddleButton:
-            self.label.setText("mouseReleaseEvent MIDDLE")
+        # Create layout
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.text_edit)
+        layout.addWidget(self.select_button)
+        layout.addWidget(self.save_button)
+        layout.addWidget(self.solve_button)
 
-        elif e.button() == Qt.RightButton:
-            self.label.setText("mouseReleaseEvent RIGHT")
+        # Create central widget
+        central_widget = QWidget()
+        central_widget.setLayout(layout)
 
-    def mouseDoubleClickEvent(self, e):
-        if e.button() == Qt.LeftButton:
-            self.label.setText("mouseDoubleClickEvent LEFT")
+        # Set central widget
+        self.setCentralWidget(central_widget)
 
-        elif e.button() == Qt.MiddleButton:
-            self.label.setText("mouseDoubleClickEvent MIDDLE")
+    def show_file_dialog(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getOpenFileName(self, "Sélectionner un fichier texte", "", "Text Files (*.txt);;All Files (*)", options=options)
 
-        elif e.button() == Qt.RightButton:
-            self.label.setText("mouseDoubleClickEvent RIGHT")
+        if file_name:
+            self.label.setText(f'Fichier sélectionné : {file_name}')
+            self.read_and_display_file(file_name)
+
+    def read_and_display_file(self, file_name):
+        try:
+            with open(file_name, 'r') as file:
+                file_content = file.read()
+                self.text_edit.setPlainText(file_content)
+        except Exception as e:
+            self.text_edit.setPlainText(f'Erreur lors de la lecture du fichier : {str(e)}')
+
+    def save_file(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getSaveFileName(self, "Save Text File", "", "Text Files (*.txt);;All Files (*)", options=options)
+
+        if file_name:
+            try:
+                with open(file_name, 'w') as file:
+                    file.write(self.text_edit.toPlainText())
+                self.label.setText(f'Fichier sauvegarder : {file_name}')
+            except Exception as e:
+                self.label.setText(f'Erreur lors de l\'enregistrement du fichier : {str(e)}')
+
+    def solve(self):
+        print('Résolution...')
+        # TODO : transformer les coordonnées x,y en matrice d'adjacence
+        # TODO : Donner la matrice d'adjacence à la partie de Duc
 
 
-# Création de l'application
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show() # Rend la fenêtre visible
+def main():
+    app = QApplication(sys.argv)
+    window = FileSelectorApp()
+    window.show()
+    sys.exit(app.exec_())
 
-# Démarrage de l'application
-app.exec()
+
+if __name__ == '__main__':
+    main()
