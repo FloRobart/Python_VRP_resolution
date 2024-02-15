@@ -82,7 +82,7 @@ class FileSelectorApp(QMainWindow):
         if file_name:
             try:
                 with open(file_name, 'w') as file:
-                    file.write(self.text_edit_read_solution.toPlainText())
+                    file.write(self.text_edit_editable.toPlainText())
 
                 self.label.setStyleSheet("QLabel { color : green; }");
                 self.label.setText(f'Fichier sauvegarder : {file_name}')
