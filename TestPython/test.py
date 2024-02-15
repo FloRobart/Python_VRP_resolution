@@ -86,7 +86,6 @@ class FileSelectorApp(QMainWindow):
 
                 self.label.setStyleSheet("QLabel { color : green; }");
                 self.label.setText(f'Fichier sauvegarder : {file_name}')
-                self.read_and_display_file(file_name)
             except Exception as e:
                 self.label.setStyleSheet("QLabel { color : red; }");
                 self.label.setText(f'Erreur lors de l\'enregistrement du fichier : {str(e)}')
