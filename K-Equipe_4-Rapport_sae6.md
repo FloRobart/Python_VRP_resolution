@@ -38,12 +38,21 @@ En résumé, l'utilisation d'une architecture MVC a contribué à la création d
 
 ### Librairie utilisée
 
-```python
-import sys
-from PyQt5.QtWidgets
-from PyQt5.QtGui
-from PyQt5.QtCore
-```
+'sys'
+
+Le module sys est une bibliothèque standard de Python qui fournit un accès à certaines fonctionnalités spécifiques du système. En particulier, l'importation de sys est couramment utilisée pour manipuler des paramètres liés à l'exécution du script, tels que les arguments de la ligne de commande. Il offre également des fonctionnalités pour interagir avec l'environnement d'exécution, comme la gestion des chemins d'accès et la sortie standard.
+
+'PyQt5.QtWidgets'
+
+Le module PyQt5.QtWidgets fait partie de la bibliothèque PyQt5, qui est une liaison Python pour la bibliothèque graphique Qt. Ce module fournit des composants d'interface utilisateur (UI) et des éléments graphiques essentiels pour le développement d'applications GUI. En important PyQt5.QtWidgets, vous avez accès à des classes telles que les fenêtres, les boutons, les boîtes de dialogue, etc., facilitant ainsi la création d'interfaces utilisateur interactives et conviviales.
+
+'PyQt5.QtGui'
+
+Le module PyQt5.QtGui offre des fonctionnalités graphiques supplémentaires pour le développement d'interfaces utilisateur. Il inclut des éléments tels que les polices, les couleurs, les images, et d'autres outils graphiques. En important ce module, vous enrichissez les capacités graphiques de votre application PyQt5, permettant la manipulation avancée des composants visuels et des éléments esthétiques.
+
+'PyQt5.QtCore'
+
+Le module PyQt5.QtCore est un composant fondamental de PyQt5, fournissant des fonctionnalités de base pour le développement d'applications. Il offre des classes liées à la gestion des événements, aux signaux et aux slots, ainsi qu'à la manipulation du temps et des threads. Importer PyQt5.QtCore est crucial pour assurer le bon fonctionnement de l'architecture de l'application PyQt5, en facilitant la gestion des interactions utilisateur et des tâches concurrentes.
 
 
 ## Implémentation de l'API de CPlex
