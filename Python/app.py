@@ -22,7 +22,7 @@ class FileSelectorApp(QMainWindow):
         self.text_edit_editable = QTextEdit()
         self.text_edit_read_solution = QTextEdit()
         self.text_edit_read_solution.setReadOnly(True)
-        self.text_edit_editable.setPlainText("Solution...")
+        self.text_edit_read_solution.setPlainText("Solution...")
         self.select_button = QPushButton('Sélectionner un fichier texte contenant les coordonnées des points')
         self.save_button = QPushButton('Sauvegarder le fichier')
         self.solve_button = QPushButton('Résoudre le problème avec CPlex')
@@ -142,14 +142,7 @@ class FileSelectorApp(QMainWindow):
         loc_y = [Ydepot]+Yclient
         print(loc_x)
         print(loc_y)
-        
-        # plt.scatter(loc_x[1:], loc_y[1:], c='b')
-        # for i in N:
-        #     plt.annotate('$n_%d=%d$' % (i, demande[i]), (loc_x[i]+2, loc_y[i]))
-        # plt.plot(loc_x[0], loc_y[0], c='r', marker='s')
-        # plt.axis('equal')
-        # plt.show()
-        
+
         A = [(i, j) for i in Vertices for j in Vertices if i!=j]
         B = [(i, j, v) for i in Vertices for j in Vertices for v in Vehicles if i!=j]
         print(B)
