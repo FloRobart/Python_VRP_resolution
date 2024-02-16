@@ -59,20 +59,14 @@ def solve():
         
         Vehicles = [i for i in range(1, V+1)]
         N = [i for i in range(1, C+1)]
-        print(N)
         Vertices = [0] + N
         demande = demandeClient
-        print(demande)
         loc_x = [Xdepot]+Xclient
         loc_y = [Ydepot]+Yclient
-        print(loc_x)
-        print(loc_y)
 
         A = [(i, j) for i in Vertices for j in Vertices if i!=j]
         B = [(i, j, v) for i in Vertices for j in Vertices for v in Vehicles if i!=j]
-        print(B)
         dist = {(i, j): np.hypot(loc_x[i]-loc_x[j], loc_y[i]-loc_y[j]) for i in Vertices for j in Vertices}
-        print(dist)
         
         # Modélisation mathématique
         mdl = Model('CVRP')
@@ -121,10 +115,10 @@ def print_content():
 
 # Create the main window
 root = tk.Tk()
-root.title("Text File Reader")
+root.title("Interface graphique pour le solveur CPlex")
 
 # Create a label
-label = tk.Label(root, text="Select a text file:")
+label = tk.Label(root, text="Selectionner un fichier texte :")
 label.pack(pady=10)
 
 # Create an entry to display the selected file path
@@ -133,7 +127,7 @@ entry = tk.Entry(root, textvariable=entry_var, state='readonly', width=40)
 entry.pack(pady=10)
 
 # Create a button to open file dialog
-browse_button = tk.Button(root, text="Browse", command=browse_file)
+browse_button = tk.Button(root, text="Gestionnaire de fichier", command=browse_file)
 browse_button.pack(pady=10)
 
 # Create a text widget to display file content

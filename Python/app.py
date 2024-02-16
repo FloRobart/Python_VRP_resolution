@@ -62,7 +62,7 @@ class FileSelectorApp(QMainWindow):
     def show_file_dialog(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select Text File", "", "Text Files (*.txt);;All Files (*)", options=options)
+        file_name, _ = QFileDialog.getOpenFileName(self, "Selectionner un fichier texte", "", "Text Files (*.txt);;All Files (*)", options=options)
 
         if file_name:
             self.label.setStyleSheet("QLabel { color : black; }");
