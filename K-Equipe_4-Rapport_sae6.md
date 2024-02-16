@@ -19,9 +19,88 @@
 
 <div class="page"></div>
 
+## Introduction
+
+Le projet en question se penche sur une problématique cruciale dans le domaine de la logistique et de la distribution : l'optimisation des tournées d'une flotte de véhicules chargés de livrer divers clients à partir d'un dépôt central. Cette tâche complexe est caractérisée par la présence de plusieurs contraintes, telles que la capacité limitée de chaque véhicule, l'obligation de satisfaire la demande spécifique de chaque client, et la nécessité pour chaque véhicule de retourner au dépôt après avoir effectué sa tournée. L'objectif principal de ce projet est de développer des solutions efficaces pour minimiser la distance parcourue par l'ensemble des véhicules, optimisant ainsi le processus de livraison dans son ensemble. Il convient de noter que ce défi s'inscrit dans la lignée du problème classique du voyageur de commerce, mais avec des paramètres supplémentaires qui le rendent plus réaliste et pertinent pour des contextes logistiques spécifiques.
+
+<div class="page"></div>
+
 ## Modélisation mathématique du problème
 
+### Données du problème
+
+Les données du problème, cruciales pour le projet d'optimisation des tournées d'une flotte de véhicules, sont énumérées ci-dessous, chacune étant accompagnée d'une explication :
+
+- **C :**
+  - Nombre de clients.
+
+- **N :**
+  - Ensemble des clients, où N = {1, 2, ..., C}.
+
+- **Vertices :**
+  - Ensemble de sommets (ou nœuds), où Vertices = 101 ∪ N.
+
+- **A :**
+  - Ensemble d'arêtes, où A = {(i, j) ∈ V^2 : i ≠ j}.
+
+- **dist_ij :**
+  - Distance entre les arêtes (i, j) ∈ A.
+
+- **Q :**
+  - Capacité.
+
+- **demande_i :**
+  - Demande du client i ∈ N.
+
+- **V :**
+  - Nombre de véhicules.
+
+- **Vehicules :**
+  - Ensemble de véhicules.
+
+### Variable de décision
+
+Les variables de décision définies dans le cadre du projet d'optimisation des tournées d'une flotte de véhicules sont fondamentales pour modéliser le problème. Voici une liste de ces variables, accompagnée d'explications :
+
+- **xvij :**
+  - Variable binaire égale à 1 si le véhicule v passe directement du nœud i au nœud j, et 0 sinon.
+
+- **nbreVehiculeUtilise :**
+  - Nombre de véhicules utilisés.
+
+
+### Contraintes
+
+Les contraintes énoncées dans le projet d'optimisation des tournées d'une flotte de véhicules sont cruciales pour définir le cadre du problème. Voici une liste des contraintes accompagnées d'explications :
+
+1. **Un véhicule qui quitte le dépôt, retourne au dépôt à la fin de sa tournée :**
+   - Chaque véhicule doit commencer et terminer sa tournée au dépôt, garantissant ainsi une gestion efficace des ressources et une meilleure planification des itinéraires.
+
+2. **Un véhicule visite un client une et une seule fois :**
+   - Chaque client doit être servi par un seul véhicule, évitant ainsi les redondances dans les livraisons et garantissant l'efficacité de la distribution.
+
+3. **Au moins un véhicule est utilisé pour la construction des tournées :**
+   - Assure qu'il y a au moins un véhicule en activité, ce qui est essentiel pour accomplir les livraisons et satisfaire la demande des clients.
+
+4. **Un seul véhicule est utilisé pour aller de i à j :**
+   - Chaque trajet entre deux clients doit être effectué par un seul véhicule, ce qui simplifie la gestion des itinéraires et la coordination des ressources.
+
+5. **Un client est visité exactement une et une seule fois par un véhicule :**
+   - Chaque client doit être inclus dans l'itinéraire d'un seul véhicule pour éviter la confusion et garantir une livraison précise et complète.
+
+6. **Élimination des sous-tours :**
+   - Empêche la formation de sous-tours, où un véhicule pourrait retourner au dépôt avant d'avoir desservi tous les clients prévus dans sa tournée. Cette contrainte garantit une planification logique et optimale des itinéraires.
+
+7. **La capacité du véhicule ne peut être dépassée :**
+   - Chaque véhicule a une capacité maximale définie, assurant ainsi que la somme des produits à livrer à chaque client dans une tournée ne dépasse pas cette capacité. Cette contrainte est essentielle pour maintenir l'efficacité opérationnelle de la flotte.
+
+### Modèle mathématique
+
+
+
 ## Modélisation CPlex du problème
+
+
 
 ## Conception de l'interface graphique
 
